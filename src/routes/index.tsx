@@ -122,7 +122,7 @@ function Index() {
           <div className="hero-copy">
             <p className="eyebrow">Established 2009 • Madhya Pradesh & Maharashtra</p>
             <h1>Legacy in <span>Every Layer.</span></h1>
-            <p className="hero-description">Since 2009, Navin Constructions has grown into a 200+ strong team running 15-20 ongoing projects across Madhya Pradesh and Maharashtra — railways, roads, civil works, power plants, RMC plants and industrial projects.</p>
+            <p className="hero-description">Since 2009, Navin Constructions has grown into a 150+ strong team with 200+ completed projects across Madhya Pradesh and Maharashtra — railways, roads, civil works, power plants, RMC plants and industrial projects.</p>
             <div className="hero-buttons">
               <a className="btn btn-primary" href="#projects">Explore Our Work <ArrowUpRight size={16} /></a>
               <a className="btn" href="#contact">Start a Project</a>
@@ -149,7 +149,7 @@ function Index() {
       </section>
 
       <div className="stats" aria-label="Company statistics">
-        {[["2009", "Established"], ["15-20", "Ongoing Projects"], ["200+", "Team Members"], ["2", "States Served"]].map(([number, label]) => (
+        {[["2009", "Established"], ["200+", "Projects Completed"], ["150+", "Team Members"], ["18 Yrs", "Of Legacy"]].map(([number, label]) => (
           <div className="stat" key={label}><div className="stat-number">{number}</div><div className="stat-label">{label}</div></div>
         ))}
       </div>
