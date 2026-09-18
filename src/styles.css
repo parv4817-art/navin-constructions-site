@@ -158,7 +158,7 @@
 @utility nav-panel { display: flex; align-items: center; gap: 34px; }
 @utility nav-links { display: flex; gap: 30px; margin: 0; padding: 0; list-style: none; font-size: 10px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; & a { color: var(--muted-foreground); transition: color .3s; } & a:hover { color: var(--primary); } }
 @utility nav-contact { border: 1px solid var(--primary); padding: 11px 18px; color: var(--primary); font-size: 10px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; transition: .3s; &:hover { background: var(--primary); color: var(--primary-foreground); } }
-@utility menu-button { display: none; color: var(--foreground); }
+@utility menu-button { display: none !important; color: var(--foreground); }
 
 @utility hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding: 138px 6% 72px; background: var(--background); }
 @utility hero-watermark { position: absolute; top: 8%; left: 2%; color: oklch(1 0 0 / 2.5%); font-size: 190px; font-weight: 700; line-height: 1; pointer-events: none; }
@@ -230,7 +230,7 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 30px
 }
 
 @media (max-width: 980px) {
-  .menu-button { display: inline-flex; }
+  .menu-button { display: inline-flex !important; }
   .nav-panel { position: absolute; inset: 100% 0 auto; display: none; padding: 24px 6% 30px; background: oklch(0.09 0.008 220 / 98%); border-bottom: 1px solid var(--border); }
   .nav-panel-open { display: block; }
   .nav-links { flex-direction: column; gap: 18px; margin-bottom: 24px; }
