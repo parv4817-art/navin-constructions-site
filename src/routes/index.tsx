@@ -122,7 +122,7 @@ function Index() {
           <div className="hero-copy">
             <p className="eyebrow">Established 2009 • Madhya Pradesh & Maharashtra</p>
             <h1>Legacy in <span>Every Layer.</span></h1>
-            <p className="hero-description">Navin Constructions engineers dependable infrastructure across railways, roads, civil works, power plants, RMC plants and industrial projects — delivered by experienced engineers and field teams.</p>
+            <p className="hero-description">Since 2009, Navin Constructions has grown into a 150+ strong team with 200+ completed projects across Madhya Pradesh and Maharashtra — railways, roads, civil works, power plants, RMC plants and industrial projects.</p>
             <div className="hero-buttons">
               <a className="btn btn-primary" href="#projects">Explore Our Work <ArrowUpRight size={16} /></a>
               <a className="btn" href="#contact">Start a Project</a>
@@ -149,18 +149,18 @@ function Index() {
       </section>
 
       <div className="stats" aria-label="Company statistics">
-        {[["2009", "Established"], ["150+", "Projects Completed"], ["2", "States Served"], ["5+", "Civil Engineers"]].map(([number, label]) => (
+        {[["2009", "Established"], ["200+", "Projects Completed"], ["150+", "Team Members"], ["18 Yrs", "Of Legacy"]].map(([number, label]) => (
           <div className="stat" key={label}><div className="stat-number">{number}</div><div className="stat-label">{label}</div></div>
         ))}
       </div>
 
       <section id="about" className="about page-section">
-        <div className="about-image"><img src={civilRoadProject} alt="Navin Constructions team laying reinforced concrete at a civil works project site" loading="lazy" width={1024} height={1280} /></div>
+        <div className="about-image"><img src={powerPlantProject} alt="Industrial power plant site where Navin Constructions carries out civil and infrastructure works" loading="lazy" width={1024} height={1280} /></div>
         <div className="about-text">
           <SectionHeading label="About Navin Constructions" title="Building the infrastructure behind progress." />
           <p>Established in 2009, Navin Constructions is a construction and infrastructure company based in Sarni, Betul, Madhya Pradesh.</p>
-          <p>The company undertakes a diverse range of construction and infrastructure works across Madhya Pradesh and Maharashtra, with experience in railway works, roads, civil construction, power plant works, RMC plant execution, vehicles and logistics, and allied infrastructure activities.</p>
-          <p>With a team of experienced civil engineers, site supervisors, operators and field personnel, Navin Constructions combines technical capability with on-ground execution.</p>
+          <p>Today the company runs 15-20 ongoing projects statewide across Madhya Pradesh and Maharashtra, with experience in railway works, roads, civil construction, power plant works, RMC plant execution, vehicles and logistics, and allied infrastructure activities.</p>
+          <p>Backed by a full-fledged team of 200+ people — including experienced civil engineers, site supervisors, operators, drivers and field personnel — Navin Constructions combines technical capability with dependable on-ground execution.</p>
           <div className="owner-box"><strong>Navin Shivhare</strong><span>Founder & Owner</span></div>
         </div>
       </section>
@@ -215,8 +215,8 @@ function Index() {
             <SectionHeading label="Get In Touch" title="Let's build what comes next." />
             <p className="contact-text">Contact Navin Constructions for construction, infrastructure, railway, civil, industrial, RMC and logistics-related requirements.</p>
             <div className="contact-details">
-              <div className="contact-detail"><span>Founder & Owner</span><strong>Navin Shivhare</strong><a href="tel:+919425003749">+91 94250 03749</a></div>
-              <div className="contact-detail"><span>Co-Founder</span><strong>Parv Shivhare</strong><a href="tel:+917470933749">+91 74709 33749</a></div>
+              <div className="contact-detail"><span>Founder & Owner</span><strong>Navin Shivhare</strong><a href="tel:+919425003749">+91 94250 03749</a><a href="mailto:navinconstruction99@gmail.com">navinconstruction99@gmail.com</a></div>
+              <div className="contact-detail"><span>Co-Founder</span><strong>Parv Shivhare</strong><a href="tel:+917470933749">+91 74709 33749</a><a href="mailto:navinconstruction99@gmail.com">navinconstruction99@gmail.com</a></div>
               <div className="contact-detail"><span>Head Office</span><strong>Sarni, Betul, Madhya Pradesh</strong></div>
               <div className="contact-detail"><span>Operations</span><strong>Madhya Pradesh & Maharashtra</strong></div>
             </div>
