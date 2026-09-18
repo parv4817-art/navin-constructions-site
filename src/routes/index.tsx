@@ -1,10 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import aboutImage from "@/assets/navin-about.jpg";
 import heroImage from "@/assets/navin-hero.jpg.asset.json";
+import logoImage from "@/assets/navin-logo.png.asset.json";
+import founderImage from "@/assets/navin-founder.jpeg.asset.json";
+import cofounderImage from "@/assets/navin-cofounder.jpeg.asset.json";
+import operatorImage from "@/assets/navin-operator.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -59,10 +63,9 @@ const equipment = [
 ];
 
 const team = [
-  ["Founder Photo", "Navin Shivhare", "Founder & Owner", "+91 94250 03749", "tel:+919425003749"],
-  ["Co-Founder Photo", "Parv Shivhare", "Co-Founder", "+91 74709 33749", "tel:+917470933749"],
-  ["Operator Photo", "Prateek", "Computer Operator", "", ""],
-  ["Logistics Photo", "Subhash", "Logistics Monitor", "", ""],
+  [founderImage.url, "Navin Shivhare", "Founder & Owner", "+91 94250 03749", "tel:+919425003749", "Navin Shivhare, Founder and Owner of Navin Constructions"],
+  [cofounderImage.url, "Parv Shivhare", "Co-Founder", "+91 74709 33749", "tel:+917470933749", "Parv Shivhare, Co-Founder of Navin Constructions with his security team"],
+  [operatorImage.url, "Prateek", "Computer Operator", "", "", "Prateek at a Navin Constructions project site"],
 ];
 
 function SectionHeading({ label, title, intro }: { label: string; title: string; intro?: string }) {
@@ -82,7 +85,9 @@ function Index() {
   return (
     <main>
       <nav className="site-nav" aria-label="Main navigation">
-        <a className="logo" href="#top" onClick={closeMenu}>NAVIN <span>CONSTRUCTIONS</span></a>
+        <a className="logo" href="#top" onClick={closeMenu} aria-label="Navin Constructions home">
+          <img src={logoImage.url} alt="Navin Construction" />
+        </a>
         <div className={`nav-panel ${menuOpen ? "nav-panel-open" : ""}`}>
           <ul className="nav-links">
             {navItems.map((item) => (
@@ -103,14 +108,31 @@ function Index() {
         </Button>
       </nav>
 
-      <section id="top" className="hero" style={{ backgroundImage: `linear-gradient(var(--hero-overlay), var(--hero-overlay-deep)), url(${heroImage.url})` }}>
+      <section id="top" className="hero">
+        <div className="hero-watermark" aria-hidden="true">NAVIN</div>
         <div className="hero-content">
-          <p className="eyebrow">Established 2017 • Madhya Pradesh & Maharashtra</p>
-          <h1>NAVIN <span>CONSTRUCTIONS</span></h1>
-          <p className="hero-description">Construction & Infrastructure across Railways, Roads, Civil Works, Power Plants, RMC Plant Execution, Vehicles & Logistics.</p>
-          <div className="hero-buttons">
-            <a className="btn btn-primary" href="#projects">Explore Our Work</a>
-            <a className="btn" href="#contact">Contact Us</a>
+          <div className="hero-copy">
+            <p className="eyebrow">Established 2017 • Madhya Pradesh & Maharashtra</p>
+            <h1>Legacy in <span>Every Layer.</span></h1>
+            <p className="hero-description">Engineering dependable infrastructure across railways, roads, civil works, power plants and industrial projects.</p>
+            <div className="hero-buttons">
+              <a className="btn btn-primary" href="#projects">Explore Our Work <ArrowUpRight size={16} /></a>
+              <a className="btn" href="#contact">Start a Project</a>
+            </div>
+          </div>
+          <div className="hero-visuals">
+            <figure className="hero-main-image">
+              <img src={heroImage.url} alt="Navin Constructions project execution on site" />
+              <figcaption>Construction & Infrastructure</figcaption>
+            </figure>
+            <figure className="hero-detail-image">
+              <img src={operatorImage.url} alt="Navin Constructions team member at an active project site" />
+            </figure>
+            <div className="hero-brand-panel">
+              <img src={logoImage.url} alt="Navin Construction logo" />
+              <p>Built with integrity</p>
+              <span>Precision in every project since 2017</span>
+            </div>
           </div>
         </div>
       </section>
@@ -163,12 +185,16 @@ function Index() {
       <section id="team" className="team page-section">
         <SectionHeading label="Our People" title="The Team Behind the Work" intro="A dedicated team supporting engineering, operations, logistics and on-site execution." />
         <div className="team-grid">
-          {team.map(([placeholder, name, role, phone, href]) => (
+          {team.map(([image, name, role, phone, href, alt]) => (
             <article className="team-card" key={name}>
-              <div className="team-photo"><span className="photo-placeholder">{placeholder}</span></div>
+              <div className="team-photo"><img src={image} alt={alt} loading="lazy" /></div>
               <div className="team-info"><h3>{name}</h3><div className="team-role">{role}</div>{phone ? <a className="team-phone" href={href}>{phone}</a> : null}</div>
             </article>
           ))}
+          <article className="team-card team-card-text">
+            <div className="team-monogram" aria-hidden="true">NC</div>
+            <div className="team-info"><h3>Subhash</h3><div className="team-role">Logistics Monitor</div></div>
+          </article>
         </div>
         <div className="supervisor-heading"><SectionHeading label="Site Operations" title="Site Supervisors" intro="Our site supervision team supports day-to-day project execution and on-ground coordination." /></div>
         <div className="supervisors">
