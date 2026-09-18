@@ -169,7 +169,8 @@
 @utility hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, oklch(0.1 0.02 210 / 96%) 0%, oklch(0.12 0.02 210 / 76%) 48%, oklch(0.12 0.02 210 / 30%) 100%), linear-gradient(0deg, oklch(0.1 0.02 210 / 82%) 0%, transparent 55%); }
 @utility hero-watermark-logo { position: absolute; z-index: 1; right: 3%; top: 18%; width: min(46vw, 610px); opacity: .11; filter: grayscale(1) brightness(2.2); pointer-events: none; }
 @utility hero-watermark { position: absolute; z-index: 1; left: 5%; bottom: -2%; color: oklch(1 0 0 / 4%); font-family: var(--font-display); font-size: min(15vw, 210px); font-weight: 700; line-height: .8; pointer-events: none; }
-@utility hero-content { position: relative; z-index: 2; width: 100%; max-width: 1320px; margin: auto; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8%; align-items: end; }
+@utility hero-content { position: relative; z-index: 2; width: 100%; max-width: 1320px; margin: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 480px); gap: 6%; align-items: end; }
+@utility hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; & span { padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted-foreground); font-size: 9px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; background: oklch(0.16 0.018 210 / 55%); } }
 @utility hero-copy { max-width: 620px; }
 @utility eyebrow { display: flex; align-items: center; gap: 14px; margin: 0 0 28px; color: var(--primary); font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; &::before { content: ""; width: 42px; height: 1px; background: var(--primary); } }
 @utility hero-description { max-width: 570px; margin: 0 0 38px; border-left: 1px solid var(--border); padding-left: 24px; color: var(--muted-foreground); font-size: 17px; font-weight: 300; line-height: 1.8; }

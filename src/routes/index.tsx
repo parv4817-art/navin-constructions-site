@@ -3,18 +3,17 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import aboutImage from "@/assets/navin-about.jpg";
-import heroImage from "@/assets/navin-hero.jpg.asset.json";
-import logoImage from "@/assets/navin-logo.png.asset.json";
-import founderImage from "@/assets/navin-founder.jpeg.asset.json";
-import cofounderImage from "@/assets/navin-cofounder-new.jpeg.asset.json";
-import operatorImage from "@/assets/navin-operator.jpeg.asset.json";
-import railwayProject from "@/assets/project-railway.jpeg.asset.json";
-import civilRoadProject from "@/assets/project-civil-road.jpeg.asset.json";
-import rmcNightProject from "@/assets/project-rmc-night.jpeg.asset.json";
-import rmcEquipmentProject from "@/assets/project-rmc-equipment.jpeg.asset.json";
-import powerPlantProject from "@/assets/project-power-plant.jpeg.asset.json";
-import buildingProject from "@/assets/project-building.jpeg.asset.json";
+import logoImage from "@/assets/navin-logo.png";
+import founderImage from "@/assets/founder.jpeg";
+import cofounderImage from "@/assets/cofounder.jpeg";
+import operatorImage from "@/assets/operator.jpeg";
+import logisticsImage from "@/assets/logistics.jpeg";
+import railwayProject from "@/assets/project-railway.jpeg";
+import civilRoadProject from "@/assets/project-civil-road.jpeg";
+import rmcNightProject from "@/assets/project-rmc-night.jpeg";
+import rmcEquipmentProject from "@/assets/project-rmc-equipment.jpeg";
+import powerPlantProject from "@/assets/project-power-plant.jpeg";
+import buildingProject from "@/assets/project-building.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,12 +52,12 @@ const capabilities = [
 ];
 
 const projects = [
-  [railwayProject.url, "Railway Track Works", "Railway Infrastructure", "center"],
-  [civilRoadProject.url, "Concrete & Civil Works", "Civil Construction", "center 45%"],
-  [rmcNightProject.url, "Night Plant Operations", "RMC Plant Execution", "center"],
-  [rmcEquipmentProject.url, "Plant & Equipment", "Equipment Deployment", "center"],
-  [powerPlantProject.url, "Industrial Operations", "Power Plant Works", "center"],
-  [buildingProject.url, "Structural Construction", "Building Construction", "center"],
+  [railwayProject, "Railway Track Works", "Railway Infrastructure", "center"],
+  [civilRoadProject, "Concrete & Civil Works", "Civil Construction", "center 45%"],
+  [rmcNightProject, "Night Plant Operations", "RMC Plant Execution", "center"],
+  [rmcEquipmentProject, "Plant & Equipment", "Equipment Deployment", "center"],
+  [powerPlantProject, "Industrial Operations", "Power Plant Works", "center"],
+  [buildingProject, "Structural Construction", "Building Construction", "center"],
 ];
 
 const equipment = [
@@ -69,9 +68,10 @@ const equipment = [
 ];
 
 const team = [
-  [founderImage.url, "Navin Shivhare", "Founder & Owner", "+91 94250 03749", "tel:+919425003749", "Navin Shivhare, Founder and Owner of Navin Constructions"],
-  [cofounderImage.url, "Parv Shivhare", "Co-Founder", "+91 74709 33749", "tel:+917470933749", "Parv Shivhare, Co-Founder of Navin Constructions with his security team"],
-  [operatorImage.url, "Prateek", "Computer Operator", "", "", "Prateek at a Navin Constructions project site"],
+  [founderImage, "Navin Shivhare", "Founder & Owner", "+91 94250 03749", "tel:+919425003749", "Navin Shivhare, Founder and Owner of Navin Constructions", "center 25%"],
+  [cofounderImage, "Parv Shivhare", "Co-Founder", "+91 74709 33749", "tel:+917470933749", "Parv Shivhare, Co-Founder of Navin Constructions", "center 20%"],
+  [operatorImage, "Prateek", "Site Operator", "", "", "Site operator at a Navin Constructions project site", "center 30%"],
+  [logisticsImage, "Subhash", "Logistics Head", "", "", "Subhash, Logistics Head at Navin Constructions", "center 20%"],
 ];
 
 function SectionHeading({ label, title, intro }: { label: string; title: string; intro?: string }) {
@@ -92,7 +92,7 @@ function Index() {
     <main>
       <nav className="site-nav" aria-label="Main navigation">
         <a className="logo" href="#top" onClick={closeMenu} aria-label="Navin Constructions home">
-          <img src={logoImage.url} alt="Navin Construction" />
+          <img src={logoImage} alt="Navin Construction" />
         </a>
         <div className={`nav-panel ${menuOpen ? "nav-panel-open" : ""}`}>
           <ul className="nav-links">
@@ -115,23 +115,35 @@ function Index() {
       </nav>
 
       <section id="top" className="hero">
-        <img className="hero-background" src={heroImage.url} alt="" aria-hidden="true" />
+        <img className="hero-background" src={buildingProject} alt="" aria-hidden="true" />
         <div className="hero-shade" aria-hidden="true" />
-        <img className="hero-watermark-logo" src={logoImage.url} alt="" aria-hidden="true" />
         <div className="hero-watermark" aria-hidden="true">NAVIN</div>
         <div className="hero-content">
           <div className="hero-copy">
             <p className="eyebrow">Established 2009 • Madhya Pradesh & Maharashtra</p>
             <h1>Legacy in <span>Every Layer.</span></h1>
-            <p className="hero-description">Engineering dependable infrastructure across railways, roads, civil works, power plants and industrial projects.</p>
+            <p className="hero-description">Navin Constructions engineers dependable infrastructure across railways, roads, civil works, power plants, RMC plants and industrial projects — delivered by experienced engineers and field teams.</p>
             <div className="hero-buttons">
               <a className="btn btn-primary" href="#projects">Explore Our Work <ArrowUpRight size={16} /></a>
               <a className="btn" href="#contact">Start a Project</a>
             </div>
+            <div className="hero-chips" aria-label="Core services">
+              {["Railways", "Roads", "Civil Works", "Power Plants", "RMC Plants"].map((chip) => (
+                <span key={chip}>{chip}</span>
+              ))}
+            </div>
           </div>
-          <div className="hero-signature" aria-label="Navin Constructions company overview">
-            <span>Since</span><strong>2009</strong>
-            <div>Construction<br />Infrastructure<br />Railways</div>
+          <div className="hero-visuals" aria-hidden="true">
+            <figure className="hero-main-image">
+              <img src={railwayProject} alt="" />
+              <figcaption>Railway Infrastructure</figcaption>
+            </figure>
+            <figure className="hero-detail-image"><img src={rmcNightProject} alt="" /></figure>
+            <div className="hero-brand-panel">
+              <img src={logoImage} alt="" />
+              <p>Navin</p>
+              <span>Construction</span>
+            </div>
           </div>
         </div>
       </section>
@@ -143,7 +155,7 @@ function Index() {
       </div>
 
       <section id="about" className="about page-section">
-        <div className="about-image"><img src={aboutImage} alt="Large infrastructure construction project with railway tracks, equipment and concrete columns" loading="lazy" width={1024} height={1280} /></div>
+        <div className="about-image"><img src={civilRoadProject} alt="Navin Constructions team laying reinforced concrete at a civil works project site" loading="lazy" width={1024} height={1280} /></div>
         <div className="about-text">
           <SectionHeading label="About Navin Constructions" title="Building the infrastructure behind progress." />
           <p>Established in 2009, Navin Constructions is a construction and infrastructure company based in Sarni, Betul, Madhya Pradesh.</p>
@@ -184,16 +196,12 @@ function Index() {
       <section id="team" className="team page-section">
         <SectionHeading label="Our People" title="The Team Behind the Work" intro="A dedicated team supporting engineering, operations, logistics and on-site execution." />
         <div className="team-grid">
-          {team.map(([image, name, role, phone, href, alt]) => (
+          {team.map(([image, name, role, phone, href, alt, position]) => (
             <article className="team-card" key={name}>
-              <div className="team-photo"><img src={image} alt={alt} loading="lazy" /></div>
+              <div className="team-photo"><img src={image} alt={alt} loading="lazy" style={{ objectPosition: position }} /></div>
               <div className="team-info"><h3>{name}</h3><div className="team-role">{role}</div>{phone ? <a className="team-phone" href={href}>{phone}</a> : null}</div>
             </article>
           ))}
-          <article className="team-card team-card-text">
-            <div className="team-monogram" aria-hidden="true">NC</div>
-            <div className="team-info"><h3>Subhash</h3><div className="team-role">Logistics Monitor</div></div>
-          </article>
         </div>
         <div className="supervisor-heading"><SectionHeading label="Site Operations" title="Site Supervisors" intro="Our site supervision team supports day-to-day project execution and on-ground coordination." /></div>
         <div className="supervisors">
