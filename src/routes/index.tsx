@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowUpRight, Menu, Volume2, VolumeX, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import logoImage from "@/assets/navin-logo.png";
@@ -16,6 +16,7 @@ import powerPlantProject from "@/assets/project-power-plant.jpeg";
 import buildingProject from "@/assets/project-building.jpeg";
 import introVideo from "@/assets/navin-construction-intro.mp4.asset.json";
 import introVideoWebm from "@/assets/navin-construction-intro.webm.asset.json";
+import introScore from "@/assets/navin-intro-score.mp3";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -90,10 +91,33 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [introVisible, setIntroVisible] = useState(true);
   const [logoReveal, setLogoReveal] = useState(false);
+  const [soundOn, setSoundOn] = useState(false);
+  const introAudioRef = useRef<HTMLAudioElement>(null);
   const closeMenu = () => setMenuOpen(false);
 
   const revealIntroLogo = () => {
     setLogoReveal(true);
+  };
+
+  const closeIntro = () => {
+    introAudioRef.current?.pause();
+    setIntroVisible(false);
+  };
+
+  const toggleIntroSound = async () => {
+    const audio = introAudioRef.current;
+    if (!audio) return;
+    if (soundOn) {
+      audio.pause();
+      setSoundOn(false);
+      return;
+    }
+    try {
+      await audio.play();
+      setSoundOn(true);
+    } catch {
+      setSoundOn(false);
+    }
   };
 
   useEffect(() => {
@@ -111,7 +135,7 @@ function Index() {
 
   useEffect(() => {
     if (!logoReveal) return;
-    const exitTimer = setTimeout(() => setIntroVisible(false), 2200);
+    const exitTimer = setTimeout(closeIntro, 3000);
     return () => clearTimeout(exitTimer);
   }, [logoReveal]);
 
@@ -131,11 +155,22 @@ function Index() {
             <source src={introVideoWebm.url} type="video/webm" />
             <source src={introVideo.url} type="video/mp4" />
           </video>
+          <audio ref={introAudioRef} src={introScore} preload="auto" aria-hidden="true" />
           <div className="intro-vignette" aria-hidden="true" />
-          <div className="intro-logo-lockup">
-            <img src={logoImage} alt="Navin Construction" />
+          <div className="intro-logo-lockup" aria-label="Navin Construction">
+            <div className="intro-logo-build" aria-hidden="true">
+              <span className="intro-logo-piece intro-logo-piece-left"><img src={logoImage} alt="" /></span>
+              <span className="intro-logo-piece intro-logo-piece-center"><img src={logoImage} alt="" /></span>
+              <span className="intro-logo-piece intro-logo-piece-right"><img src={logoImage} alt="" /></span>
+              <span className="intro-rail intro-rail-one" />
+              <span className="intro-rail intro-rail-two" />
+            </div>
+            <p className="intro-company-name"><span>Navin</span> Construction</p>
           </div>
-          <Button className="intro-skip" variant="ghost" onClick={() => setIntroVisible(false)}>
+          <Button className="intro-sound" variant="ghost" size="icon" onClick={toggleIntroSound} aria-label={soundOn ? "Turn intro sound off" : "Turn intro sound on"}>
+            {soundOn ? <Volume2 /> : <VolumeX />}
+          </Button>
+          <Button className="intro-skip" variant="ghost" onClick={closeIntro}>
             Skip intro
           </Button>
         </div>
