@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import logoImage from "@/assets/navin-logo.png";
@@ -89,21 +89,30 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [introVisible, setIntroVisible] = useState(true);
   const [logoReveal, setLogoReveal] = useState(false);
-  const exitTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closeMenu = () => setMenuOpen(false);
 
   const revealIntroLogo = () => {
     setLogoReveal(true);
-    exitTimer.current = setTimeout(() => setIntroVisible(false), 2200);
   };
 
   useEffect(() => {
     document.body.style.overflow = introVisible ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
-      if (exitTimer.current) clearTimeout(exitTimer.current);
     };
   }, [introVisible]);
+
+  useEffect(() => {
+    if (!introVisible || logoReveal) return;
+    const revealTimer = setTimeout(() => setLogoReveal(true), 5200);
+    return () => clearTimeout(revealTimer);
+  }, [introVisible, logoReveal]);
+
+  useEffect(() => {
+    if (!logoReveal) return;
+    const exitTimer = setTimeout(() => setIntroVisible(false), 2200);
+    return () => clearTimeout(exitTimer);
+  }, [logoReveal]);
 
   return (
     <main>
