@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import logoImage from "@/assets/navin-logo.png";
@@ -14,6 +14,8 @@ import rmcNightProject from "@/assets/project-rmc-night.jpeg";
 import rmcEquipmentProject from "@/assets/project-rmc-equipment.jpeg";
 import powerPlantProject from "@/assets/project-power-plant.jpeg";
 import buildingProject from "@/assets/project-building.jpeg";
+import introVideo from "@/assets/navin-construction-intro.mp4.asset.json";
+import introVideoWebm from "@/assets/navin-construction-intro.webm.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -86,10 +88,59 @@ function SectionHeading({ label, title, intro }: { label: string; title: string;
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [introVisible, setIntroVisible] = useState(true);
+  const [logoReveal, setLogoReveal] = useState(false);
   const closeMenu = () => setMenuOpen(false);
+
+  const revealIntroLogo = () => {
+    setLogoReveal(true);
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = introVisible ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [introVisible]);
+
+  useEffect(() => {
+    if (!introVisible || logoReveal) return;
+    const revealTimer = setTimeout(() => setLogoReveal(true), 5200);
+    return () => clearTimeout(revealTimer);
+  }, [introVisible, logoReveal]);
+
+  useEffect(() => {
+    if (!logoReveal) return;
+    const exitTimer = setTimeout(() => setIntroVisible(false), 2200);
+    return () => clearTimeout(exitTimer);
+  }, [logoReveal]);
 
   return (
     <main>
+      {introVisible ? (
+        <div className={`site-intro ${logoReveal ? "site-intro-logo" : ""}`} aria-label="Navin Construction introduction">
+          <video
+            className="intro-video"
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            onEnded={revealIntroLogo}
+            onError={revealIntroLogo}
+          >
+            <source src={introVideoWebm.url} type="video/webm" />
+            <source src={introVideo.url} type="video/mp4" />
+          </video>
+          <div className="intro-vignette" aria-hidden="true" />
+          <div className="intro-logo-lockup">
+            <img src={logoImage} alt="Navin Construction" />
+          </div>
+          <Button className="intro-skip" variant="ghost" onClick={() => setIntroVisible(false)}>
+            Skip intro
+          </Button>
+        </div>
+      ) : null}
+
       <nav className="site-nav" aria-label="Main navigation">
         <a className="logo" href="#top" onClick={closeMenu} aria-label="Navin Constructions home">
           <img src={logoImage} alt="Navin Construction" />
@@ -122,7 +173,7 @@ function Index() {
           <div className="hero-copy">
             <p className="eyebrow">Established 2009 • Madhya Pradesh & Maharashtra</p>
             <h1>Legacy in <span>Every Layer.</span></h1>
-            <p className="hero-description">Since 2009, Navin Constructions has grown into a 150+ strong team with 200+ completed projects across Madhya Pradesh and Maharashtra — railways, roads, civil works, power plants, RMC plants and industrial projects.</p>
+            <p className="hero-description">Since 2009, Navin Constructions has grown into a 150+ strong team with 400+ completed projects across Madhya Pradesh and Maharashtra — railways, roads, civil works, power plants, RMC plants and industrial projects.</p>
             <div className="hero-buttons">
               <a className="btn btn-primary" href="#projects">Explore Our Work <ArrowUpRight size={16} /></a>
               <a className="btn" href="#contact">Start a Project</a>
@@ -149,7 +200,7 @@ function Index() {
       </section>
 
       <div className="stats" aria-label="Company statistics">
-        {[["2009", "Established"], ["200+", "Projects Completed"], ["150+", "Team Members"], ["18 Yrs", "Of Legacy"]].map(([number, label]) => (
+        {[["2009", "Established"], ["400+", "Projects Completed"], ["150+", "Team Members"], ["18 Yrs", "Of Legacy"]].map(([number, label]) => (
           <div className="stat" key={label}><div className="stat-number">{number}</div><div className="stat-label">{label}</div></div>
         ))}
       </div>
