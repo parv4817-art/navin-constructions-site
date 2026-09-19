@@ -15,6 +15,7 @@ import rmcEquipmentProject from "@/assets/project-rmc-equipment.jpeg";
 import powerPlantProject from "@/assets/project-power-plant.jpeg";
 import buildingProject from "@/assets/project-building.jpeg";
 import introVideo from "@/assets/navin-construction-intro.mp4.asset.json";
+import introVideoWebm from "@/assets/navin-construction-intro.webm.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -120,14 +121,16 @@ function Index() {
         <div className={`site-intro ${logoReveal ? "site-intro-logo" : ""}`} aria-label="Navin Construction introduction">
           <video
             className="intro-video"
-            src={introVideo.url}
             autoPlay
             muted
             playsInline
             preload="auto"
             onEnded={revealIntroLogo}
             onError={revealIntroLogo}
-          />
+          >
+            <source src={introVideoWebm.url} type="video/webm" />
+            <source src={introVideo.url} type="video/mp4" />
+          </video>
           <div className="intro-vignette" aria-hidden="true" />
           <div className="intro-logo-lockup">
             <img src={logoImage} alt="Navin Construction" />
